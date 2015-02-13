@@ -32,3 +32,19 @@
               (should= '(1 :a 2 :b 3 :c) (interleave-seqs [1 2 3] [:a :b :c])))
           (it "interleaves diff size seqs, stopping at the shortest one"
               (should= '(1 3 2 4) (interleave-seqs  [1 2] [3 4 5 6]))))
+
+(describe "Replicate a Sequence"
+          (it "returns the same list from a collection"
+              (should= '(4 5 6) (replicate-seq [4 5 6] 1)))
+          (it "returns a the list replicated twice"
+              (should= '(1 1 2 2 3 3) (replicate-seq [1 2 3] 2)))
+          (it "replicated a list of vectors"
+              (should= '([1 2] [1 2] [3 4] [3 4]) (replicate-seq [[1 2] [3 4]] 2))))
+
+(describe "Interpose a sequence"
+          (it "returns the same item if a single list"
+              (should= [1] (interpose-seq 0 [1])))
+          (it "returns interposed seq when 2 items in the seq"
+              (should= [1 0 2] (interpose-seq 0 [1 2])))
+          (it "returns larger interposed seq"
+              (should= [:a :z :b :z :c :z :d] (interpose-seq :z [:a :b :c :d]))))

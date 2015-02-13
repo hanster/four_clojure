@@ -29,3 +29,19 @@
           (cons (first coll2)
                 (interleave-seqs (rest coll1)
                                   (rest coll2))))))
+
+;; 31 Replicate a Sequence
+(defn replicate-seq [coll times-repeated]
+  (mapcat #(repeat times-repeated %) coll))
+
+;; 40 Interpose a Seq
+(defn interpose-seq [inter coll]
+  (if (empty? (rest coll))
+    coll
+    (cons (first coll)
+          (cons inter
+                (interpose-seq inter (rest coll))))))
+
+
+
+
